@@ -49,6 +49,22 @@
                         <argument>com.shop.JdbcCheck</argument>
                     </arguments>
                 </configuration>
+                <executions>
+                    <execution>
+                        <id>cli</id>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <inheritIo>true</inheritIo>
+                            <arguments combine.self="override">
+                                <argument>-classpath</argument>
+                                <classpath/>
+                                <argument>com.shop.ShopCli</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>

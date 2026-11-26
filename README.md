@@ -4,7 +4,7 @@
 
 ## 当前进度
 
-已完成需求分析和 Java 项目骨架。目前可以运行 JDBC 连库检查，数据库设计、业务 SQL 脚本和功能模块待开发。
+已完成需求分析、Java 项目骨架、命令行菜单流程和 JDBC 连库检查。数据库结构确定后再接入业务 Service。
 
 - [需求分析报告](01_项目需求分析/需求分析报告.md)
 - [小组开发指导](doc/开发指导.md)
@@ -13,6 +13,14 @@
 ## 本地启动
 
 开发环境使用 JDK 17 或更高版本、Maven 3.9 和 MySQL 8.4 LTS。Java 代码采用简单的 DAO 和 Service 分层，通过 JDBC 访问数据库。
+
+在仓库根目录运行以下命令打开命令行菜单。当前可以试用登录和注册的输入流程。
+
+```powershell
+mvn -f '05_JDBC应用编程/pom.xml' compile exec:exec@cli
+```
+
+验证 MySQL 连接时，按以下步骤操作。
 
 1. 在 IntelliJ IDEA 中打开 [Java 项目的 pom.xml](05_JDBC应用编程/pom.xml)，导入 Maven 项目。
 2. 启动本机 MySQL，按 [Java 项目运行说明](05_JDBC应用编程/README.md) 在 Java 项目目录创建 `.env`，填写 `DB_URL`、`DB_USER` 和 `DB_PASSWORD`。

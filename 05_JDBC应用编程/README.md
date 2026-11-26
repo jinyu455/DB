@@ -7,6 +7,12 @@
 
 通过 IntelliJ IDEA 打开本目录的 `pom.xml`，即可导入 Maven 项目。
 
+## 启动命令行程序
+
+在本目录的交互终端运行 `mvn compile exec:exec@cli`，也可在 IDEA 中运行 `com.shop.ShopCli`。
+
+入口菜单提供登录、注册和退出。注册先检查两次密码是否一致。账户服务接入后，登录成功会进入对应的顾客或管理员菜单，各业务操作由菜单进入。当前提交登录或注册会提示「账号服务待接入」，可以用测试值体验输入流程。密码在支持 Java 控制台的终端中隐藏输入，其他运行窗口可能回显。拟实现的类和方法见[需求分析报告](../01_项目需求分析/需求分析报告.md)。
+
 ## 配置和验证连接
 
 首次配置时，从仓库根目录打开 PowerShell，将 [配置模板](.env.example) 复制为 Java 项目目录下的 `.env`。
@@ -36,4 +42,4 @@ mvn compile exec:exec
 | `com.shop.dao` | 各业务模块在这里实现 SQL 与数据读写。 |
 | `com.shop.service` | 各业务模块在这里实现业务规则。跨多个 DAO 的操作由 Service 开启事务，并向 DAO 传入同一个连接，由 Service 统一提交或回滚。 |
 
-`JdbcCheck` 是开发用的连库检查入口。后续网页接口可以调用同一组 Service 方法。
+`JdbcCheck` 是开发用的连库检查入口。
