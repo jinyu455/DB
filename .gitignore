@@ -1,0 +1,16 @@
+# Maven 构建产物
+target/
+
+# IDE 本地配置
+.idea/
+*.iml
+/.vscode/
+/.metals/
+
+# 本地环境变量文件
+.env
+.env.*
+!.env.example
+
+# Word 临时锁文件
+~$*.docx
