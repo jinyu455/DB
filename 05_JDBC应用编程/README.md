@@ -9,19 +9,24 @@
 
 ## 配置和验证连接
 
-从仓库根目录打开 PowerShell。下面的地址只连接 MySQL 实例，可以在创建业务库之前运行。账号和密码请填本机的配置。
+首次配置时，从仓库根目录打开 PowerShell，将 [配置模板](.env.example) 复制为 Java 项目目录下的 `.env`。
 
 ```powershell
 Set-Location -LiteralPath '05_JDBC应用编程'
-$env:DB_URL = 'jdbc:mysql://localhost:3306/'
-$env:DB_USER = '你的本机数据库账号'
-$env:DB_PASSWORD = '你的本机数据库密码'
+Copy-Item -LiteralPath '.env.example' -Destination '.env'
+```
+
+编辑 `.env`，填写本机的数据库地址、账号和密码。模板里的 JDBC 地址可在创建业务库之前使用。`.env` 使用 UTF-8，每行一个 `KEY=VALUE`，以 `#` 开头的行是注释。值需要保留首尾空格时，可以用单引号或双引号包起来。配置优先读取 `.env`，缺少的项再从同名环境变量读取。`.env` 已由 Git 忽略。
+
+在 Java 项目目录运行连库检查：
+
+```powershell
 mvn compile exec:exec
 ```
 
-成功时会显示 `JDBC connection OK (SELECT 1 returned 1).`。也可在 IDEA 的运行配置里设置这三个环境变量，再运行 `com.shop.JdbcCheck`。
+成功时会显示 `JDBC connection OK (SELECT 1 returned 1).`。在 IDEA 中直接运行 `com.shop.JdbcCheck` 时，将运行配置的工作目录设为 `05_JDBC应用编程`。
 
-业务脚本统一放在仓库的 `04_数据库实现/`。脚本就绪后，每位成员在自己的 MySQL 实例上依次执行建表和初始化脚本，再把 `DB_URL` 改为包含实际数据库名的地址，例如 `jdbc:mysql://localhost:3306/shopping`。账号和密码由各成员在本机配置。
+业务脚本统一放在仓库的 `04_数据库实现/`。脚本就绪后，每位成员在自己的 MySQL 实例上依次执行建表和初始化脚本，再把 `.env` 里的 `DB_URL` 改为包含实际数据库名的地址，例如 `jdbc:mysql://localhost:3306/shopping`。
 
 ## 分层
 
